@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Energy Efficiency of Vision Models</title>
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="container">
+
+        <!-- Container for the accuracy selectors -->
+        <div id="controls">
+
+            <div class="control-group", id="energy-selectors">
+                <label><b>Select GPU:</b></label>
+                <div id="gpu-selectors">
+                    <label class="gpu-button">
+                        <input type="radio" name="gpu-select" value="A100" checked>
+                        A100 PCIE 40GiB
+                    </label>
+                    <label class="gpu-button">
+                        <input type="radio" name="gpu-select" value="H100">
+                        H100 PCIE 80GiB
+                    </label>
+                </div>
+                <br>
+                <label><b>Select Deployment option:</b></label>
+                <div id="deployment-selectors">
+                    <label class="deployment-button">
+                        <input type="radio" name="deployment-select" value="PT" checked>
+                        PyTorch
+                    </label>
+                    <label class="deployment-button">
+                        <input type="radio" name="deployment-select" value="TRT">
+                        TensorRT
+                    </label>
+                </div>
+
+            </div>  
+
+            <div class="control-group", id="accuracy-selectors">
+                <label><b>Select to plot the different Test Datasets:</b></label>
+            </div>
+
+            <div class="control-group", id="score-selectors">
+                <label><b>Options for the Model Efficiency Score:</b></label>
+                <div id="score-selectors">
+                    <label>Score:</label>
+                    <label class="score-button">
+                        <input type="radio" name="score-select" value="manhattan" checked>
+                        Weighted Manhattan
+                    </label>
+                    <label class="score-button">
+                        <input type="radio" name="score-select" value="accuracyperjoule">
+                        Accuracy/Joule
+                    </label>
+                </div>
+                <br>
+
+                <!-- a slider to select the weighting with 'weight' text-->
+                <label for="weightSlider">Score Weighting:
+                <!-- Slider for 'Weight' parameter -->
+                <input type="range" id="weightSlider" min="0" max="100" value="50" step="1">
+                <span id="weightValue">50</span>
+                </label>
+                <br>
+                <!-- a text box to enter a min accuracy value, default is 0 -->
+                <label for="min-accuracy">Minimum Acceptable Accuracy (%) :
+                    <input type="number" id="min-accuracy" name="min-accuracy" min="0" max="100">
+                </label>
+                <br>
+                <!-- a text box to enter a max energy value, default is infinity -->
+                <label for="max-energy">Maximum Acceptable Energy (mJ) :
+                    <input type="number" id="max-energy" name="max-energy" min="0" value="">
+                </label>
+
+            </div>
+
+            <div class="control-group", id="plot-options">
+                <label><b>Plot Options:</b></label>
+                <div id="xscale-selectors">
+                    <label>X-axis Scale:</label>
+                    <label class="xscale-button">
+                        <input type="radio" name="xscale-select" value="linear">
+                        Linear
+                    </label>
+                    <label class="xscale-button">
+                        <input type="radio" name="xscale-select" value="log" checked>
+                        Log
+                    </label>
+                </div>
+                <br>
+
+                <!-- a text box to enter the number of top scores to show -->
+                <label for="top-scores">Number of Top Models to Show:
+                    <input type="number" id="top-scores" name="top-scores" min="1" value="24">
+                </label>
+            </div>
+
+        </div>
+
+        <div id="outputs">
+        <!-- Container for the Plotly chart -->
+            <div id="plotDiv"></div>
+        <!-- Container for the Model Efficiency Score -->
+            <div id="scoreDiv"></div>
+        </div>
+
+    </div>
+
+    <!-- Link to your JavaScript file -->
+    <script src="script.js"></script>
+
+</body>
+</html>

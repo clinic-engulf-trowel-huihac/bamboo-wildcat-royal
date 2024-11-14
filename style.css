@@ -1,0 +1,74 @@
+/* General styles */
+html, body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+}
+
+#controls {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* Allows controls to wrap to the next line on smaller screens */
+    align-items: flex-start; /* Vertically centers the controls */
+    gap: 20px; /* Adds space between control groups */
+    padding: 10px;
+    background-color: #f8f8f8;
+}
+
+.control-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: rgba(255, 255, 255, 0.8);
+    gap: 2px; /* Space between elements within a control group */
+    padding: 10px;
+}
+
+#outputs {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1; /* Allow the plot to take up remaining space */
+}
+/* Styles for the Plotly chart */
+#plotDiv {
+    flex-grow: 1;
+    min-height: 0; /* Allow the plot to shrink properly */
+    overflow: hidden; /* Prevent internal scrolling */
+    padding: 0; /* Ensure no padding */
+    margin: 0;  /* Ensure no margin */
+}
+
+#scoreDiv {
+    width: 25%;
+    padding: 10px;
+    
+}
+
+input[type="range"] {
+    width: 192px; /* Adjust width as needed */
+}
+
+input[type="number"] {
+    width: 96px; /* Adjust width as needed */
+    text-align: left; /* Align number input text to the left */
+}
+
+
+/* Slider Value Display Styling */
+#weight-value {
+    font-weight: bold; /* Make the value text bold */
+    margin-top: 5px; /* Space between slider and value */
+    /* Optional: Add color or other styles */
+    color: #333;
+}
+
+.hovertext { fill-opacity: 0.9; stroke-opacity: 1; }
